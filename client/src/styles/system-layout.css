@@ -1,0 +1,106 @@
+:root {
+  /* 布局尺寸 */
+  --sys-layout-max-width: 1440px;
+  --sys-layout-min-width: 1200px;
+  --sys-padding-x: 24px;
+  --sys-padding-y: 16px;
+  
+  /* 高度计算 */
+  --sys-header-height: 64px;
+  --sys-breadcrumb-height: 40px;
+  --sys-action-bar-height: 56px;
+  --sys-pagination-height: 48px;
+  --sys-pagination-margin: 16px;
+  
+  /* 表格高度 = 100vh - 头部 - 面包屑 - 操作栏 - 分页 - 分页间距 - 顶部Padding - 底部Padding */
+  /* 假设面包屑在Layout外部，这里只计算内部。如果面包屑在外部，需要减去。 */
+  /* 目前 SystemManager 有 Tabs，Tabs Header 约 50px */
+  /* 调整：SystemManager 容器高度已定 calc(100vh - 100px) */
+  /* 我们基于父容器高度 100% 来计算 */
+  
+  /* 卡片样式 */
+  --sys-card-radius: 8px;
+  --sys-card-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --sys-card-title-height: 56px;
+  
+  /* 列宽 */
+  --sys-col-index: 60px;
+  --sys-col-status: 100px;
+  --sys-col-action: 180px;
+}
+
+/* 统一布局容器 */
+.sys-module-container {
+  max-width: var(--sys-layout-max-width);
+  min-width: var(--sys-layout-min-width);
+  margin: 0 auto;
+  padding: var(--sys-padding-y) var(--sys-padding-x);
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.sys-module-card {
+  background: #fff;
+  border-radius: var(--sys-card-radius);
+  box-shadow: var(--sys-card-shadow);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden; /* 防止内容溢出 */
+  position: relative;
+}
+
+.sys-module-header {
+  height: var(--sys-card-title-height);
+  padding: 0 24px;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.sys-module-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000000d9;
+}
+
+.sys-module-actions {
+  /* position: absolute; */
+  /* right: 24px; */
+  /* top: 16px; */
+  /* 移除绝对定位，使用Flex布局自动对齐 */
+  display: flex;
+  gap: 8px;
+}
+
+.sys-module-content {
+  flex: 1;
+  padding: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.sys-module-table-wrapper {
+  flex: 1;
+  overflow: auto;
+}
+
+.sys-module-pagination {
+  height: var(--sys-pagination-height);
+  margin-top: var(--sys-pagination-margin);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+/* 统一表格样式覆盖 */
+.sys-table .ant-table-thead > tr > th {
+  background: #fafafa;
+  font-weight: 600;
+}
